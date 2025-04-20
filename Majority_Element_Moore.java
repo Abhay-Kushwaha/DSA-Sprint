@@ -5,27 +5,22 @@ public class Majority_Element_Moore {
         // Moore's Voting Algo
         int count = 1;
         int ans = nums[0];
-        int maxCount = 1;
-        Arrays.sort(nums);
         for (int i = 1; i < nums.length; i++) {
-            if (nums[i] == nums[i - 1]) {
-                count++;
-            } else {
-                count = 1;
-            }
-            if (count > maxCount) {
-                maxCount = count;
+            if (count == 0) {
                 ans = nums[i];
+            } 
+            else if(ans==nums[i]){
+                count++;
+            }
+            else{
+                count--;
             }
         }
-        if (maxCount > nums.length / 2)
-            return ans;
-        else
-            return -1;
+        return ans;
     }
     public static void main(String[] args) {
         Majority_Element_Moore obj = new Majority_Element_Moore();
-        int arr[] = { 2, 2, 1, 1, 1, 2, 2 };
+        int arr[] = { 1, 2, 1, 3, 1, 2, 1 };
         System.out.println("Majority Element in Array is: "+obj.majorityElement(arr));
     }
 }
